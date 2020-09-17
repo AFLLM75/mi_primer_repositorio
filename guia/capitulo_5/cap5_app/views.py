@@ -36,3 +36,16 @@ def select(request):
    cursor.close()
    conn.close()
    return HttpResponse(html)
+
+def delete(request):
+    conn = psycopg2.connect(dbname="capitulo_4_db",
+                            user="capitulo_4_user",
+                            password="patata")
+
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM emp WHERE enombre='HUGO';")
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return HttpResponse("Eliminado")
+
