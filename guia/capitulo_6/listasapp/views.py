@@ -15,6 +15,7 @@ def anadir(request):
     prioridad = request.POST["name_prioridad"]
     titulo= request.POST["nombre_titulo"]
     nota = request.POST["name_nota"]
+    cursor.execute(f"INSERT INTO Nota VALUES ('{prioridad}','{titulo}', '{nota}');")
     conn.commit()
     cursor.close()
     conn.close()
