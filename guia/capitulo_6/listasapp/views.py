@@ -6,17 +6,24 @@ import psycopg2
 # Create your views here.
 def form(request):
    return render(request,'formulario.html')
-"""
-def anadir(request):
-   prioridad = request.POST["name_prioridad"]
-   titulo= request.POST["nombre_titulo"]
-   nota = request.POST["name_nota"]
-   return (HttpResponse(f'Insertado <br> '
-                        f'Prioridad: {prioridad}<br>'
-                        f'Título: {titulo}<br>'
-                        f'Nota: {nota}<br>'))
-"""
 
+def anadir(request):
+    conn = psycopg2.connect(dbname="capitulo_6_db",
+                            user="capitulo_6_user",
+                            password="patata")
+    cursor = conn.cursor()
+    prioridad = request.POST["name_prioridad"]
+    titulo= request.POST["nombre_titulo"]
+    nota = request.POST["name_nota"]
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return (HttpResponse(f'<i>Insertado</i><br> '
+                         f'<b><u>Prioridad</u>:</b> {prioridad}<br>'
+                         f'<b><u>Título</u>:</b> {titulo}<br>'
+                         f'<b><u>Nota</u>:</b> {nota}<br>'))
+
+"""
 def insert(request):
    conn = psycopg2.connect(dbname="capitulo_6_db",
                            user="capitulo_6_user",
@@ -29,7 +36,6 @@ def insert(request):
    cursor.close()
    conn.close()
    return HttpResponse("Insertado")
-
 
 def select(request):
    conn = psycopg2.connect(dbname="capitulo_6_db",
@@ -50,3 +56,4 @@ def select(request):
    cursor.close()
    conn.close()
    return HttpResponse(html)
+"""

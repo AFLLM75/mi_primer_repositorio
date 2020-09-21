@@ -21,7 +21,5 @@ from listasapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('formulario/', views.form, name='form'),
-    #path('anadir', views.anadir, name='anadir'),
-    path('insert/', views.insert),
-    path('consultar/', views.select),
+    path('anadir', views.anadir, name='anadir'),
 ]
