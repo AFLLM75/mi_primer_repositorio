@@ -47,5 +47,5 @@ def delete(request):
     conn.commit()
     cursor.close()
     conn.close()
-    return HttpResponse("Eliminado")
+    return HttpResponse("Hasta la vista baby")
 
