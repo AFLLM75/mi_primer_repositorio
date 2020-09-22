@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
-import psycopg2
+import psycopg2.extras
 
 
 # Create your views here.
@@ -9,8 +9,7 @@ def form(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
                             user="capitulo_6_user",
                             password="patata")
-    cursor = conn.cursor()
-
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cursor.execute("SELECT * FROM Nota;")
     result = cursor.fetchall()
     cursor.close()
