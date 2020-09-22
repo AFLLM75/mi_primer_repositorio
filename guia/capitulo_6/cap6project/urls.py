@@ -18,6 +18,7 @@ from django.urls import path
 from listasapp import views
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('formulario/', views.form, name='form'),
