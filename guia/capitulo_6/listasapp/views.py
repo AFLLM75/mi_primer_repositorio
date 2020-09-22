@@ -6,7 +6,19 @@ import psycopg2
 
 # Create your views here.
 def form(request):
-   return render(request,'formulario.html')
+    conn = psycopg2.connect(dbname="capitulo_6_db",
+                            user="capitulo_6_user",
+                            password="patata")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM Nota;")
+    result = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    params = {'notas': result}
+    return render(request, 'formulario.html', params)
+
+
 
 def anadir(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
@@ -21,6 +33,8 @@ def anadir(request):
     cursor.close()
     conn.close()
     return redirect(form)
+
+
 
 """
 def anadir(request):

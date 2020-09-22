@@ -4,6 +4,9 @@
     </head>
     <body>
     <h1>Notas</h1>
+    {% for nota in notas %}
+        {{ nota }} <br>
+    {% endfor %}
     <form method="POST" action="/anadir">
         {% csrf_token %}
         <label for="id_prioridad">Prioridad:</label>
