@@ -12,7 +12,7 @@
         </fieldset>
     {% endfor %}
 
-    <form method="POST" action="/anadir">
+    <form style='display: inline;' method="POST" action="/anadir">
         {% csrf_token %}
         <label for="id_prioridad">Prioridad:</label>
         <select id="id_prioridad" name="name_prioridad">
@@ -21,10 +21,15 @@
                 <option value="Baja">Baja</option>
         </select>
         <br>
-        <input type="text" name="nombre_titulo" placeholder="titulo" size="27"><br>
+        <input type="text" name="nombre_titulo" placeholder="Titulo" size="27"><br>
         <textarea name="name_nota" id="id_new_item" cols="40" rows="5" placeholder="Escribe tu nota aquí"></textarea>
         <br>
         <input type="submit" value="Guardar">
+    </form>
+    <form style='display: inline;' method="POST" action="/borrar">
+    {% csrf_token %}
+    <input type="submit" value="Borrar Notas">
+
     </form>
     </body>
 </html>
