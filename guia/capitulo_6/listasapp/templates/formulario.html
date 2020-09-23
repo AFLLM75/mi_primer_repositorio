@@ -1,9 +1,18 @@
 <html>
     <head>
         <title>Notas</title>
+        <style>
+        body {
+        background-color: linen;
+             }
+        h1 {
+        color: black;
+        margin-left: 40px;
+           }
+        </style>
     </head>
     <body>
-    <h1 align="center">Notas</h1>
+    <h1 align="center"> Notas </h1>
     <p>
     <form style='display: inline;' method="POST" action="/anadir">
         {% csrf_token %}
