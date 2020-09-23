@@ -4,14 +4,7 @@
     </head>
     <body>
     <h1 align="center">Notas</h1>
-
-    {% for nota in notas %}
-        <fieldset>
-            <legend><b>{{ nota.prioridad }} - {{ nota.título }}</b></legend>
-            {{ nota.contenido }} <br>
-        </fieldset>
-    {% endfor %}
-
+    <p>
     <form style='display: inline;' method="POST" action="/anadir">
         {% csrf_token %}
         <label for="id_prioridad">Prioridad:</label>
@@ -28,8 +21,14 @@
     </form>
     <form style='display: inline;' method="POST" action="/borrar">
     {% csrf_token %}
-    <input type="submit" value="Borrar Notas">
-
+       <input type="submit" value="Borrar Notas">
     </form>
+     {% for nota in notas %}
+        <fieldset>
+            <legend><b>{{ nota.prioridad }} - {{ nota.título }}</b></legend>
+            {{ nota.contenido }} <br>
+        </fieldset>
+    {% endfor %}
     </body>
+
 </html>

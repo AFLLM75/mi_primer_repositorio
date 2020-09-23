@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 import psycopg2.extras
 
-
 # Create your views here.
 def form(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
@@ -17,10 +16,7 @@ def form(request):
     params = {'notas': result}
     return render(request, 'formulario.html', params)
 
-
-
 def anadir(request):
-    print("añadir")
     conn = psycopg2.connect(dbname="capitulo_6_db",
                             user="capitulo_6_user",
                             password="patata")
