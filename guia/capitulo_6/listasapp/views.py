@@ -40,7 +40,7 @@ def borrar(request):
     cursor.close()
     conn.close()
     return redirect(form)
-
++
 """
 def anadir(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
