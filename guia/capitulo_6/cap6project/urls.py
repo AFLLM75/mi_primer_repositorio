@@ -24,4 +24,5 @@ urlpatterns = [
     path('formulario/', views.form, name='form'),
     path('anadir', views.anadir, name='anadir'),
     path('borrar', views.borrar),
+
 ]

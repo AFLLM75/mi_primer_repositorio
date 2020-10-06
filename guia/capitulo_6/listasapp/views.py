@@ -4,6 +4,22 @@ from django.shortcuts import redirect
 import psycopg2.extras
 
 # Create your views here.
+
+def form(request):
+    conn = psycopg2.connect(dbname="capitulo_6_db",
+                            user="capitulo_6_user",
+                            password="patata")
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    prioridad = request.GET.get('get_prioridad', default='%')
+    if prioridad == 'Todas':
+        prioridad = '%'
+    cursor.execute(F"SELECT * FROM Nota WHERE prioridad LIKE '{prioridad}';")
+    result = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    params = {'notas': result}
+    return render(request, 'formulario.html', params)
+"""
 def form(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
                             user="capitulo_6_user",
@@ -13,8 +29,10 @@ def form(request):
     result = cursor.fetchall()
     cursor.close()
     conn.close()
+    prioridad = request.GET.get('get_prioridad', default=None)
     params = {'notas': result}
     return render(request, 'formulario.html', params)
+"""
 
 def anadir(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
@@ -40,6 +58,8 @@ def borrar(request):
     cursor.close()
     conn.close()
     return redirect(form)
+
+
 
 """
 def anadir(request):
