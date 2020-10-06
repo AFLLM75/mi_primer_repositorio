@@ -3,8 +3,26 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 import psycopg2.extras
 
-# Create your views here.
+# Create your views here
 
+def form(request):
+    conn = psycopg2.connect(dbname="capitulo_6_db",
+                            user="capitulo_6_user",
+                            password="1234")
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    prioridad = request.GET.get('get_prioridad', default='%')
+    with open("debug.log", "w") as debug_file:
+        print(f"SELECT * FROM Nota WHERE prioridad LIKE '{prioridad}';", file=debug_file)
+    if prioridad == 'Todas':
+        prioridad = '%'
+    cursor.execute(F"SELECT * FROM Nota WHERE prioridad LIKE '{prioridad}';")
+    result = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    params = {'notas': result}
+    return render(request, 'formulario.html', params)
+
+"""
 def form(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
                             user="capitulo_6_user",
@@ -19,6 +37,7 @@ def form(request):
     conn.close()
     params = {'notas': result}
     return render(request, 'formulario.html', params)
+"""
 """
 def form(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
@@ -58,7 +77,6 @@ def borrar(request):
     cursor.close()
     conn.close()
     return redirect(form)
-
 
 
 """
