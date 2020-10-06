@@ -8,7 +8,7 @@ import psycopg2.extras
 def form(request):
     conn = psycopg2.connect(dbname="capitulo_6_db",
                             user="capitulo_6_user",
-                            password="1234")
+                            password="patata")
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     prioridad = request.GET.get('get_prioridad', default='%')
     with open("debug.log", "w") as debug_file:

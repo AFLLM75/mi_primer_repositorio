@@ -1,1 +1,1 @@
-SELECT * FROM Nota WHERE prioridad LIKE 'Alta';
+SELECT * FROM Nota WHERE prioridad LIKE '%';
